@@ -17,11 +17,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions) // we can find the info of the people who sign in using their google account
+  const session = await getServerSession(authOptions); // we can find the info of the people who sign in using their google account
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header session={session}/>
+        <Header session={session} />
         {/* {JSON.stringify(session)} */}
         {children}
       </body>

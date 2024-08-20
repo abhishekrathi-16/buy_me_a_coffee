@@ -1,7 +1,7 @@
 "use client"; // to make it a client component
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMugHot, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
 import Image from "next/image";
@@ -24,7 +24,7 @@ export default function Header({ session }: { session: Session | null }) {
             <div className="flex gap-4">
               {session && (
                 <div className="">
-                  <button className="flex items-center gap-2 bg-yellow-300 rounded-full p-1 pr-4">
+                  <Link href={"/profile"} className="flex items-center gap-2 bg-yellow-300 rounded-full p-1 pr-4">
                     <Image
                       src={session.user?.image as string}
                       alt="avatar"
@@ -33,7 +33,7 @@ export default function Header({ session }: { session: Session | null }) {
                       className="rounded-full"
                     />
                     {firstName}
-                  </button>
+                  </Link>
                 </div>
               )}
               {!session && (
