@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    @apply bg-gray-100 text-gray-800
+}
+
 input[type="text"], textarea{
     @apply block w-full border p-2 rounded-lg;
+}
+
+label.input-label{
+    @apply block mt-2 ml-1 text-xs font-semibold uppercase text-gray-500;
 }
