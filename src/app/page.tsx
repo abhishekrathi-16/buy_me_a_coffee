@@ -1,12 +1,6 @@
-import Head from "next/head";
-
 export default function Home() {
   return (
     <>
-    <Head>
-      <title>Buy Me A Coffee</title>
-      <meta name="cryptomus" content="42ffbc26" />
-    </Head>
       <section className="max-w-lg mx-auto text-center mt-16">
         <h1 className="text-6xl font-bold">
           Fund your <br /> creative work

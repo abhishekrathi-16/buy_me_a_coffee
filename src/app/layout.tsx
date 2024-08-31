@@ -21,6 +21,7 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions); // we can find the info of the people who sign in using their google account
   return (
     <html lang="en">
+      <meta name="cryptomus" content="42ffbc26" />
       <body className={inter.className}>
         <Toaster />
         <Header session={session} />
