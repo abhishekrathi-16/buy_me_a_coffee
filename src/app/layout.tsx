@@ -30,3 +30,5 @@ export default async function RootLayout({
     </html>
   );
 }
+
+// we need to set up the next auth sec and next auth url while deploying on production
