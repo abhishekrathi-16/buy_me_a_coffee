@@ -75,7 +75,7 @@ export default async function SingleProfilePage({ params }: Props) {
             {donations.length && (
               <div className="mt-2">
                 {donations.map((donation) => (
-                  <div className="py-2">
+                  <div className="py-2" key={donation.email}>
                     <h3>
                       <span className="font-semibold">{donation.name}</span>
                       <span className="text-gray-400">
