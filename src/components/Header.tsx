@@ -42,10 +42,7 @@ export default function Header({ session }: { session: Session | null }) {
                     onClick={() => signIn("google")}
                     className="border-2 rounded-full px-4 py-2 ml-4"
                   >
-                    Login
-                  </button>
-                  <button className="bg-yellow-300 rounded-full px-4 py-2">
-                    Sign Up
+                    Sign In
                   </button>
                 </>
               )}

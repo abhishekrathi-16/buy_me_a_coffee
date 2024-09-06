@@ -5,32 +5,29 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn && yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Authorisation
 
-## Learn More
+The project uses **[Next-Auth](https://next-auth.js.org/)** for authorisation with **Google OAuth 2.0**. Check [documentation](https://next-auth.js.org/providers/google) on how to use with Google cloud console.
 
-To learn more about Next.js, take a look at the following resources:
+## Storage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Uses **MongoDB** for the storage of data and the application directly links with the database through Next-Auth mongoDB adapters to store information of signed up users.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Also uses **MongoDB** for storing data relevant to user profile and donations.
 
-## Deploy on Vercel
+This project leverages **AWS S3 bucket** to store static images used for profile pictures and cover images.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Payment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For donation payments, the project is integrated with **Cryptomus**.
+(This payment method with Cryptomus has stopped working due to some functional errors, redefining the payment procedure with other alternatives soon)
+
+## Deployment
+
+This project was deployed to **Vercel**. You can find it deployed [here](https://buy-me-a-coffee-xi.vercel.app/).

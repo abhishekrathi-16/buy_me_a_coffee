@@ -1,5 +1,6 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
           Accept support for your work.
           <br /> It&apos;s easier than you think.
         </h2>
-        <button className="bg-yellow-300 px-8 py-4 font-bold rounded-full">
+        <button className="bg-yellow-300 px-8 py-4 font-bold rounded-full" onClick={() => signIn("google")}>
           Start my page
         </button>
       </section>
