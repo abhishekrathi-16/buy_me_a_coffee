@@ -1,9 +1,10 @@
 "use client";
+import { createDonation } from "@/actions/donationActions";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-export default function DonationForm() {
+export default function DonationForm({ email }: { email: string }) {
   const [numberInput, setNumberInput] = useState("");
   const [amount, setAmount] = useState(1);
   const [crypto, selectCrypto] = useState("btc");
@@ -20,8 +21,23 @@ export default function DonationForm() {
       }
     }
   }, [numberInput]);
+
+  async function handleFormSubmit(formData: FormData){
+    formData.set('amount',amount.toString());
+    formData.set('crypto',crypto);
+    formData.set('email',email);    
+    
+    const url = await createDonation(formData);
+    if(!url){      
+      return;
+    }
+    if(url && window && window.location){
+      window.location.href = url;
+    }
+;  }
+
   return (
-    <form>
+    <form action={handleFormSubmit}>
       <div className="border border-yellow-300 rounded-xl p-4 flex items-center gap-2 bg-yellow-300/10">
         <FontAwesomeIcon icon={faCoffee} />
         <span>x</span>
@@ -64,10 +80,10 @@ export default function DonationForm() {
         />
       </div>
       <div className="mt-2">
-        <input type="text" placeholder="Your Name" />
+        <input type="text" name="name" placeholder="Your Name" />
       </div>
       <div className="mt-2">
-        <textarea name="" placeholder="Say something nice" />
+        <textarea name="message" placeholder="Say something nice" />
       </div>
       <div className="mt-2">
         <h3 className="text-xs mb-1 text-gray-500">Pay With Selected Crypto or with CC</h3>

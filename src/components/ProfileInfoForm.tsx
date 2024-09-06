@@ -5,6 +5,9 @@ import { useState } from "react";
 import { ProfileInfo } from "@/models/ProfileInfo";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { signOut } from "next-auth/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightFromBracket, faSave } from "@fortawesome/free-solid-svg-icons";
 
 type Props = { profileInfo: ProfileInfo | null };
 
@@ -84,9 +87,18 @@ export default function ProfileInfoForm({ profileInfo }: Props) {
           placeholder="bio"
         />
       </div>
-      <div>
-        <button className="bg-yellow-300 rounded-full mt-4 px-4 py-2">
-          Save profile
+      <div className="flex justify-between">
+        <button className="bg-yellow-300 rounded-full mt-4 px-4 py-2 flex gap-1 items-center">
+          <FontAwesomeIcon icon={faSave} />
+          Save Profile
+        </button>
+        <button
+          type="button"
+          className="bg-gray-200 border border-gray-300 rounded-full mt-4 px-4 py-2 flex gap-1 items-center"
+          onClick={() => signOut()}
+        >
+          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+          Log Out
         </button>
       </div>
     </form>

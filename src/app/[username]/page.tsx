@@ -1,5 +1,7 @@
 "use server";
 import DonationForm from "@/components/DonationForm";
+import DonationStatus from "@/components/DonationStatus";
+import { Donation, DonationModel } from "@/models/Donation";
 import { ProfileInfo, ProfileInfoModel } from "@/models/ProfileInfo";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,8 +24,14 @@ export default async function SingleProfilePage({ params }: Props) {
   if (!profileDoc) {
     return <div>404 - profile not found</div>;
   }
+
+  const donations: Donation[] = await DonationModel.find({
+    paid: true,
+    email: profileDoc.email,
+  });
   return (
     <div>
+      <DonationStatus />
       <div className="w-full h-48">
         <Image
           src={profileDoc.coverUrl}
@@ -58,11 +66,34 @@ export default async function SingleProfilePage({ params }: Props) {
             <h3 className="font-semibold">About {profileDoc.username}</h3>
             {profileDoc.bio}
             <hr className="my-4" />
-            <h3 className="font-semibold">Recent Supporters</h3>
-            <p>No recent donations</p>
+            <h3 className="font-semibold mt-6">Recent Supporters:</h3>
+            {!donations.length && (
+              <>
+                <p>No recent donations</p>
+              </>
+            )}
+            {donations.length && (
+              <div className="mt-2">
+                {donations.map((donation) => (
+                  <div className="py-2">
+                    <h3>
+                      <span className="font-semibold">{donation.name}</span>
+                      <span className="text-gray-400">
+                        {donation.amount === 1 && " bought you a coffee"}
+                        {donation.amount > 1 &&
+                          ` bought you ${donation.amount} coffees`}
+                      </span>
+                    </h3>
+                    <p className="bg-gray-100 p-2 rounded-md">
+                      {donation.message}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="bg-white rounded-xl p-4 shadow-sm">
-            <DonationForm />
+            <DonationForm email={profileDoc.email} />
           </div>
         </div>
       </div>
